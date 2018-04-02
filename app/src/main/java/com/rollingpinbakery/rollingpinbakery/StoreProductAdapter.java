@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rollingpinbakery.rollingpinbakery.Data.Product;
+import com.rollingpinbakery.rollingpinbakery.Data.Cart;
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
 
 import java.util.ArrayList;
@@ -118,17 +119,17 @@ public class StoreProductAdapter extends ArrayAdapter<Product> {
 
     public void cart(View view, int id, String name, String price, String salePrice, String type, String desc){
         Intent formResult = new Intent(getContext(), CartActivity.class);
-/*
+
         formResult.putExtra("int_productID", id);
         formResult.putExtra("txt_productName", name);
         formResult.putExtra("txt_productPrice",price);
         formResult.putExtra("txt_productSalePrice", salePrice);
         formResult.putExtra("txt_productType", type);
         formResult.putExtra("txt_productDesc", desc);
-*/
+
 
         view.getContext().startActivity(formResult);
-        //AppDatabase.getAppDatabase(this).cartDao().insert(new CartActivity(name, type, salePrice, null));
+        AppDatabase.getAppDatabase(context).cartDao().insert(new Cart(name, type, salePrice));
         //finish();
     }
 }

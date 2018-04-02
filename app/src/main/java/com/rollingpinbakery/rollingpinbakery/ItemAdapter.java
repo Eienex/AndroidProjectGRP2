@@ -26,7 +26,7 @@ public class ItemAdapter extends ArrayAdapter<Product> {
     Context context;
 
     public ItemAdapter(Context context, ArrayList<Product> products){
-        super(context, R.layout.row_item, products);
+        super(context, R.layout.content_item, products);
         this.dataSet = products;
         this.context = context;
     }
@@ -37,19 +37,30 @@ public class ItemAdapter extends ArrayAdapter<Product> {
     public View getView(int postition, @Nullable View convertView, @NonNull final ViewGroup parent){
         final Product product = getItem(postition);
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        convertView = inflater.inflate(R.layout.row_item_store, parent, false);
+        convertView = inflater.inflate(R.layout.content_item, parent, false);
 
-        final TextView name = convertView.findViewById(R.id.name);
-        final TextView salePrice = convertView.findViewById(R.id.salePrice);
+        final TextView ProductName = convertView.findViewById(R.id.productName);
         final TextView productDesc = convertView.findViewById(R.id.productDesc);
-        Button buyBtn = convertView.findViewById(R.id.EditBtn);
-        Button backButton = convertView.findViewById(R.id.DeleteBtn);
+        final TextView productType = convertView.findViewById(R.id.productType);
+        final TextView ProductSalePrice = convertView.findViewById(R.id.productSalePrice);
+        Button buyBtn = convertView.findViewById(R.id.buyBtn);
 
         final int id = product.get_prodId();
 
-        name.setText("Name: " + product.getProdName());
-        salePrice.setText("Price: " + product.getProdRetailPrice());
+        ProductName.setText("Name: " + product.getProdName());
         productDesc.setText("Description: " + product.getProdDesc());
+        ProductSalePrice.setText("Price: " + product.getProdRetailPrice());
+
+
+        buyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final String txtName = ProductName.getText().toString();
+                final String txtType = productType.getText().toString();
+                final String txtSalePrice = ProductSalePrice.getText().toString();
+                buyItem(view, txtName, txtType, txtSalePrice);
+            }
+        });
 
         return convertView;
     }
