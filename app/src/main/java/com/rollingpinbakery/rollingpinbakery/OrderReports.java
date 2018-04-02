@@ -2,7 +2,6 @@ package com.rollingpinbakery.rollingpinbakery;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
@@ -14,7 +13,7 @@ public class OrderReports extends AppCompatActivity {
 
     ListView listView;
     ArrayList<Order> orders;
-    private static Order_ReportAdapter adapter2;
+    private static OrderReportAdapter adapter2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
