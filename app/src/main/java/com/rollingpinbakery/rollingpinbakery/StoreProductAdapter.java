@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,9 @@ public class StoreProductAdapter extends ArrayAdapter<Product> {
     private ArrayList<Product> dataSet;
     Context context;
 
+    ListView listView;
+    ArrayList<Product> products;
+    private static StoreProductAdapter adapter;
     public StoreProductAdapter(Context context, ArrayList<Product> products){
         super(context, R.layout.row_item_store, products);
         this.dataSet = products;
@@ -113,8 +117,6 @@ public class StoreProductAdapter extends ArrayAdapter<Product> {
     }
 
     public void cart(View view, int id, String name, String price, String salePrice, String type, String desc){
-
-
         Intent formResult = new Intent(getContext(), CartActivity.class);
 /*
         formResult.putExtra("int_productID", id);

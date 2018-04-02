@@ -75,6 +75,7 @@
     <string name="price">Price</string>
     <string name="sales_price">Sales Price</string>
     <string name="description">Description</string>
+    <string name="image">Image</string>
     <string name="product_category">Product Category</string>
     <string name="isFeatured">Is this product featured?</string>
     <string name="add">Add Product</string>
