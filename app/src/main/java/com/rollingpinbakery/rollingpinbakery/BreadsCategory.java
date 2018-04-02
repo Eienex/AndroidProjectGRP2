@@ -15,16 +15,26 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.Product;
+
+import java.util.ArrayList;
 
 public class BreadsCategory extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
     public static final String MyPREFERENCES = "MyPrefs";
     SharedPreferences sharedPreferences;
+    Button buyBtn;
+    Button viewBtn;
+    ListView listView;
+    ArrayList<Product> products;
+    private static StoreProductAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -134,8 +144,19 @@ public class BreadsCategory extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
     public void NavItem(View view){
         startActivity(new Intent(this, Item.class));
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        listView = findViewById(R.id.listView);
+        products = (ArrayList<Product>) AppDatabase.getAppDatabase(this).productDao().getProductsByType("Bread");
+        adapter = new StoreProductAdapter(this, products);
+        listView.setAdapter(adapter);
     }
 }
 

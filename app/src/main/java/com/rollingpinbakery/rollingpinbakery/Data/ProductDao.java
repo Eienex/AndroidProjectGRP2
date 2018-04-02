@@ -30,6 +30,9 @@ public interface ProductDao {
     @Query("SELECT * FROM product")
     public List<Product> getAllProducts();
 
+    @Query("SELECT * FROM product where prodType == :type")
+    public List<Product> getProductsByType(String type);
+
     @Query("SELECT _prodId, prodName, prodRetailPrice, prodType, prodDesc FROM product")
     public List<Product> getInventReports();
 

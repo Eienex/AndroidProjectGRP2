@@ -17,6 +17,9 @@ import android.view.MenuItem;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
+import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
+import com.rollingpinbakery.rollingpinbakery.Data.Customer;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -29,6 +32,14 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        AppDatabase.getAppDatabase(this).customerDao().insert(
+                new Customer("Matt",
+                        "Coucke",
+                        "Equnox",
+                        "P4ssw0rd123",
+                        "Equnox@gmail.com",
+                        "Admin"));
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
